@@ -1,0 +1,120 @@
+﻿<Window x:Class="MyFilm.RegisterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyFilm"
+        mc:Ignorable="d"
+         Background="#2a2a2a"
+        Title="RegisterWindow"  Height="800" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition ></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Button Content="Регистрация" 
+                Style="{StaticResource ButtonStyle1}" 
+                Margin="0,161,0,0" Grid.Column="1" Grid.Row="1"/>
+
+        <Button Content="Выйти в меню"
+                Style="{StaticResource ButtonStyle1}" 
+                Margin="0,161,0,0" Grid.Column="2" Grid.Row="1" Click="Button_Exit_Menu"/>
+
+        <TextBlock Grid.Column="1"
+                   Style="{StaticResource TextBlockStyle1}" 
+                   HorizontalAlignment="Left" 
+                   Margin="10,23,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Введите имя" 
+                   VerticalAlignment="Top"/>
+
+        <TextBlock Grid.Column="1"
+                   Style="{StaticResource TextBlockStyle1}" 
+                   HorizontalAlignment="Left" 
+                   Margin="10,112,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Введите фамилию" 
+                   VerticalAlignment="Top"/>
+
+        <TextBlock Grid.Column="1"
+                   Style="{StaticResource TextBlockStyle1}" 
+                   HorizontalAlignment="Left" 
+                   Margin="10,290,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Введите почту" 
+                   VerticalAlignment="Top"/>
+
+        <TextBlock Grid.Column="1"
+                   Style="{StaticResource TextBlockStyle1}" 
+                   HorizontalAlignment="Left" 
+                   Margin="10,201,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Введите отчество" 
+                   VerticalAlignment="Top"/>
+
+        <TextBlock Grid.Column="2"
+                   Style="{StaticResource TextBlockStyle1}" 
+                   HorizontalAlignment="Left" 
+                   Margin="47,28,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Введите дату рождения" 
+                   VerticalAlignment="Top"/>
+
+        <TextBlock Grid.Column="2"
+                   Style="{StaticResource TextBlockStyle1}" 
+                   HorizontalAlignment="Left" 
+                   Margin="47,290,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Выберите страну проживания" 
+                   VerticalAlignment="Top"/>
+
+
+        <TextBox Grid.Column="1"
+                 Style="{StaticResource TextBoxStyle2}"
+                 HorizontalAlignment="Center" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Margin="0,52,0,0"/>
+
+        <TextBox Grid.Column="1"
+                 Style="{StaticResource TextBoxStyle2}"
+                 HorizontalAlignment="Center" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Margin="0,141,0,0"/>
+
+        <TextBox Grid.Column="1"
+                 Style="{StaticResource TextBoxStyle2}"
+                 HorizontalAlignment="Center" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Margin="0,230,0,0"/>
+
+        <TextBox Grid.Column="1"
+                 Style="{StaticResource TextBoxStyle2}"
+                 HorizontalAlignment="Center" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Margin="0,319,0,0"/>
+
+        <DatePicker Grid.Column="2" 
+                    HorizontalAlignment="Left" 
+                    Margin="47,56,0,0" 
+                    VerticalAlignment="Top" 
+                    Height="24" 
+                    Width="300"/>
+
+        <ComboBox Grid.Column="2" 
+                  ItemsSource="{Binding Country}"
+                  HorizontalAlignment="Left" 
+                  Margin="47,325,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="300"/>
+
+    </Grid>
+</Window>
