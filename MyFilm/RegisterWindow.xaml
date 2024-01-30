@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyFilm"
         mc:Ignorable="d"
-         Background="#2a2a2a"
+         Background="#f4aa0b"
         Title="RegisterWindow"  Height="800" Width="800" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <local:UserViewModel x:Key="UserViewModel"/>
+    </Window.Resources>
+
     <Grid>
 
         <Grid.RowDefinitions>
@@ -23,16 +28,18 @@
 
         <Button Content="Регистрация" 
                 Style="{StaticResource ButtonStyle1}" 
-                Margin="0,161,0,0" Grid.Column="1" Grid.Row="1"/>
+                Margin="0,239,0,0" Grid.Column="1" Grid.Row="1" 
+                Click="Button_Click_Register"/>
 
         <Button Content="Выйти в меню"
                 Style="{StaticResource ButtonStyle1}" 
-                Margin="0,161,0,0" Grid.Column="2" Grid.Row="1" Click="Button_Exit_Menu"/>
+                Margin="0,239,0,0" Grid.Column="2" Grid.Row="1" 
+                Click="Button_Exit_Menu"/>
 
         <TextBlock Grid.Column="1"
                    Style="{StaticResource TextBlockStyle1}" 
                    HorizontalAlignment="Left" 
-                   Margin="10,23,0,0" 
+                   Margin="10,10,0,0" 
                    TextWrapping="Wrap" 
                    Text="Введите имя" 
                    VerticalAlignment="Top"/>
@@ -40,7 +47,7 @@
         <TextBlock Grid.Column="1"
                    Style="{StaticResource TextBlockStyle1}" 
                    HorizontalAlignment="Left" 
-                   Margin="10,112,0,0" 
+                   Margin="10,120,0,0" 
                    TextWrapping="Wrap" 
                    Text="Введите фамилию" 
                    VerticalAlignment="Top"/>
@@ -48,7 +55,7 @@
         <TextBlock Grid.Column="1"
                    Style="{StaticResource TextBlockStyle1}" 
                    HorizontalAlignment="Left" 
-                   Margin="10,290,0,0" 
+                   Margin="10,347,0,0" 
                    TextWrapping="Wrap" 
                    Text="Введите почту" 
                    VerticalAlignment="Top"/>
@@ -56,15 +63,15 @@
         <TextBlock Grid.Column="1"
                    Style="{StaticResource TextBlockStyle1}" 
                    HorizontalAlignment="Left" 
-                   Margin="10,201,0,0" 
+                   Margin="10,234,0,0" 
                    TextWrapping="Wrap" 
                    Text="Введите отчество" 
-                   VerticalAlignment="Top"/>
+                   VerticalAlignment="Top" Height="41" Width="189"/>
 
         <TextBlock Grid.Column="2"
                    Style="{StaticResource TextBlockStyle1}" 
                    HorizontalAlignment="Left" 
-                   Margin="47,28,0,0" 
+                   Margin="10,10,0,0" 
                    TextWrapping="Wrap" 
                    Text="Введите дату рождения" 
                    VerticalAlignment="Top"/>
@@ -72,49 +79,109 @@
         <TextBlock Grid.Column="2"
                    Style="{StaticResource TextBlockStyle1}" 
                    HorizontalAlignment="Left" 
-                   Margin="47,290,0,0" 
+                   Margin="10,237,0,0" 
                    TextWrapping="Wrap" 
                    Text="Выберите страну проживания" 
+                   VerticalAlignment="Top" Width="343"/>
+
+        <TextBlock Grid.Column="1"
+                   Style="{StaticResource TextBlockStyle1}" 
+                   HorizontalAlignment="Left" 
+                   Margin="10,79,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Введите логин" 
+                   VerticalAlignment="Top" Grid.Row="1"/>
+
+        <TextBlock Grid.Column="2"
+                   Style="{StaticResource TextBlockStyle1}" 
+                   HorizontalAlignment="Left" 
+                   Margin="10,347,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Введите пароль" 
                    VerticalAlignment="Top"/>
 
+        <TextBlock Grid.Column="2"
+                   Style="{StaticResource TextBlockStyle1}" 
+                   HorizontalAlignment="Left" 
+                   Margin="10,79,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Повторите пароль" 
+                   VerticalAlignment="Top" Grid.Row="1"/>
+
 
         <TextBox Grid.Column="1"
+                 x:Name="firstNameText"
+                 Style="{StaticResource TextBoxStyle2}"
+                 Text="{Binding User.FirstName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                 HorizontalAlignment="Center" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Margin="0,50,0,0"/>
+
+        <TextBox Grid.Column="1"
+                 x:Name="lastNameText"
+                 Style="{StaticResource TextBoxStyle2}"
+                 Text="{Binding User.LastName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                 HorizontalAlignment="Center" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Margin="0,160,0,0"/>
+
+        <TextBox Grid.Column="1"
+                 x:Name="patronymicText"
+                 Style="{StaticResource TextBoxStyle2}"
+                 Text="{Binding User.Patronymic, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                 HorizontalAlignment="Center" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Margin="0,275,0,0"/>
+
+        <TextBox Grid.Column="1"
+                 x:Name="emailText"
+                 Style="{StaticResource TextBoxStyle2}"
+                 Text="{Binding User.Email, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                 HorizontalAlignment="Center" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Margin="0,392,0,0" Grid.RowSpan="2"/>
+
+        <TextBox Grid.Column="1"
+                 x:Name="loginText"
+                 Style="{StaticResource TextBoxStyle2}"
+                 Text="{Binding User.Login, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                 HorizontalAlignment="Center" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Margin="0,119,0,0" Grid.Row="1"/>
+
+        <TextBox Grid.Column="2"
+                 x:Name="passwordText"
+                 Style="{StaticResource TextBoxStyle2}"
+                 Text="{Binding User.Password, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                 HorizontalAlignment="Center" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Margin="0,392,0,0" Grid.RowSpan="2"/>
+
+        <TextBox Grid.Column="2"
+                 x:Name="passwordRepeatText"
                  Style="{StaticResource TextBoxStyle2}"
                  HorizontalAlignment="Center" 
                  TextWrapping="Wrap" 
-                 VerticalAlignment="Top" Margin="0,52,0,0"/>
+                 VerticalAlignment="Top" Margin="0,119,0,0" Grid.Row="1"/>
 
-        <TextBox Grid.Column="1"
-                 Style="{StaticResource TextBoxStyle2}"
-                 HorizontalAlignment="Center" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top" Margin="0,141,0,0"/>
 
-        <TextBox Grid.Column="1"
-                 Style="{StaticResource TextBoxStyle2}"
-                 HorizontalAlignment="Center" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top" Margin="0,230,0,0"/>
-
-        <TextBox Grid.Column="1"
-                 Style="{StaticResource TextBoxStyle2}"
-                 HorizontalAlignment="Center" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top" Margin="0,319,0,0"/>
-
-        <DatePicker Grid.Column="2" 
+        <DatePicker Grid.Column="2"
+                    x:Name="datePicker"
+                    Text="{Binding User.DateOfBirth, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                     HorizontalAlignment="Left" 
-                    Margin="47,56,0,0" 
+                    Margin="10,50,0,0" 
                     VerticalAlignment="Top" 
                     Height="24" 
                     Width="300"/>
 
         <ComboBox Grid.Column="2" 
-                  ItemsSource="{Binding Country}"
+                  x:Name="countryBox"
+                  ItemsSource="{Binding countryList}"
+                  Text="{Binding User.Country, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                   HorizontalAlignment="Left" 
-                  Margin="47,325,0,0" 
+                  Margin="10,277,0,0" 
                   VerticalAlignment="Top" 
-                  Width="300"/>
+                  Width="333"/>
 
     </Grid>
 </Window>

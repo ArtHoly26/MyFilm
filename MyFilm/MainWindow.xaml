@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyFilm"
         mc:Ignorable="d"
-        Background="#2a2a2a"
+        Background="#f4aa0b"
         Title="MainWindow" Height="800" Width="800"  WindowStartupLocation="CenterScreen">
 
 
@@ -25,14 +25,12 @@
         <Button Grid.Column="2"
                 Style="{StaticResource ButtonStyle1}"
                 Content="Зарегистрироваться" 
-                Margin="0,34,0,0" 
-                Grid.Row="1" Click="Button_Click"/>
+                Margin="140,364,0,0" Click="Button_Click" HorizontalAlignment="Left" Grid.RowSpan="2"/>
 
         <Button Grid.Column="1"
                 Style="{StaticResource ButtonStyle1}"
                 Content="Вход"  
-                Margin="0,34,0,0" 
-                Grid.Row="1"/>
+                Margin="10,364,0,0" HorizontalAlignment="Left" Grid.RowSpan="2"/>
 
         <TextBox Grid.Column="1" 
                  Style="{StaticResource TextBoxStyle1}"
@@ -47,7 +45,7 @@
                    Margin="185,10,0,0" 
                    TextWrapping="Wrap" 
                    Text="Введите логин" 
-                   VerticalAlignment="Top"/>
+                   VerticalAlignment="Top" Grid.ColumnSpan="2" Width="220"/>
 
         <TextBlock Grid.Column="1" 
                    Style="{StaticResource TextBlockStyle1}" 
@@ -55,7 +53,7 @@
                    Margin="185,146,0,0" 
                    TextWrapping="Wrap" 
                    Text="Введите пароль" 
-                   VerticalAlignment="Top"/>
+                   VerticalAlignment="Top" Grid.ColumnSpan="2" Width="220"/>
 
         <TextBox Grid.Column="1"
                  Style="{StaticResource TextBoxStyle1}"
@@ -68,9 +66,17 @@
         <Button Grid.Column="1"
                 Style="{StaticResource ButtonStyle1}"
                 Content="Выход" 
-                Grid.ColumnSpan="2" 
-                Margin="0,163,0,0" 
-                Grid.Row="1" Click="Button_Click_Exit"/>
+                Grid.Row="1" Click="Button_Click_Exit" HorizontalAlignment="Left" Margin="10,109,0,0"/>
+
+        <Button Grid.Column="2"
+                Style="{StaticResource ButtonStyle1}"
+                Content="Контакты" 
+                Grid.Row="1" HorizontalAlignment="Left" Margin="140,109,0,0"/>
+
+
+        <Image Source="/MyFilm;component/Picture/127.ico" 
+               Margin="240,340,240,196" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+
     </Grid>
 
 </Window>
