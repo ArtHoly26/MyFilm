@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Globalization;
 
 namespace MyFilm
 {
@@ -56,7 +57,7 @@ namespace MyFilm
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
             try
-                {
+            {
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         connection.Open();
@@ -74,22 +75,26 @@ namespace MyFilm
                             command.Parameters.AddWithValue("@Value7", selectedDate);
                             command.Parameters.AddWithValue("@Value8", country);
 
-                        int rowsAffected = command.ExecuteNonQuery();
+                            int rowsAffected = command.ExecuteNonQuery();
+
                             if (rowsAffected > 0 && password==passwordRepeat)
                             {
-                                MessageBox.Show("Данные успешно добавлены в базу данных.");
+                                errorText.Text="Регистрация прошла успешно!";
+                                errorText.Foreground = Brushes.Green;
                             }
+
                             else
-                            {
-                                MessageBox.Show("Не удалось добавить данные в базу данных.");
+                            { 
+                                errorText.Text = "Ошибка при вводе данных!";
+                                errorText.Foreground = Brushes.Red;
                             }
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Ошибка: {ex.Message}");
-                }
+            }
+            catch (Exception ex)
+            {
+                  MessageBox.Show($"Ошибка: {ex.Message}");
+            }
             
         }
     }

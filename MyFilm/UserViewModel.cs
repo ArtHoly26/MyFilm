@@ -10,7 +10,10 @@ namespace MyFilm
     class UserViewModel : INotifyPropertyChanged
     {
         private User _user;
+        private Film _film;
+        private List<Film> _filmList;
         private List<string> countrylist;
+  
         public User User
         {
             get { return _user; }
@@ -23,6 +26,18 @@ namespace MyFilm
                 }
             }
         }
+        public Film Film
+        {
+            get { return _film; }
+            set
+            {
+                if (_film != value)
+                {
+                    _film = value;
+                    OnPropertyChanged(nameof(Film));
+                }
+            }
+        }
         public List<string> countryList
         {
             get { return countrylist; }
@@ -32,6 +47,18 @@ namespace MyFilm
                 {
                     countrylist = value;
                     OnPropertyChanged(nameof(countrylist));
+                }
+            }
+        }
+        public List<Film> FilmList
+        {
+            get { return _filmList; }
+            set
+            {
+                if (_filmList != value)
+                {
+                    _filmList = value;
+                    OnPropertyChanged(nameof(FilmList));
                 }
             }
         }

@@ -108,6 +108,14 @@
                    Text="Повторите пароль" 
                    VerticalAlignment="Top" Grid.Row="1"/>
 
+        <TextBlock Grid.Column="1"
+                   x:Name="errorText"
+                   Style="{StaticResource TextBlockStyle1}" 
+                   HorizontalAlignment="Left" 
+                   Margin="229,196,0,0" 
+                   TextWrapping="Wrap"  
+                   VerticalAlignment="Top" Grid.Row="1" Grid.ColumnSpan="2" Width="436"/>
+
 
         <TextBox Grid.Column="1"
                  x:Name="firstNameText"

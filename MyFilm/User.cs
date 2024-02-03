@@ -10,139 +10,138 @@ namespace MyFilm
 {
     public class User: INotifyPropertyChanged
     {
-        private int id;
-        private string? firstname;
-        private string? lastname;
-        private string? patronymic;
-        private string? email;
-        private string? login;
-        private string? password;
-        private DateTime dateofbirth;
-        private int age;
-        private string? country;
+        private int _id;
+        private string? _firstname;
+        private string? _lastname;
+        private string? _patronymic;
+        private string? _email;
+        private string? _login;
+        private string? _password;
+        private DateTime _dateofbirth;
+        private int _age;
+        private string? _country;
        
         public int Id
         {
-            get { return id; }
+            get { return _id; }
             set
             {
-                if (id != value)
+                if (_id != value)
                 {
-                    id = value;
+                    _id = value;
                     OnPropertyChanged(nameof(Id));
                 }
             }
         }
         public string FirstName
         {
-            get { return firstname; }
+            get { return _firstname; }
             set
             {
-                if (firstname != value)
+                if (_firstname != value)
                 {
-                    firstname = value;
+                    _firstname = value;
                     OnPropertyChanged(nameof(FirstName));
                 }
             }
         }
         public string LastName
         {
-            get { return lastname; }
+            get { return _lastname; }
             set
             {
-                if (lastname != value)
+                if (_lastname != value)
                 {
-                    lastname = value;
+                    _lastname = value;
                     OnPropertyChanged(nameof(LastName));
                 }
             }
         }
         public string Patronymic
         {
-            get { return patronymic; }
+            get { return _patronymic; }
             set
             {
-                if (patronymic != value)
+                if (_patronymic != value)
                 {
-                    patronymic = value;
+                    _patronymic = value;
                     OnPropertyChanged(nameof(Patronymic));
                 }
             }
         }
         public string Email
         {
-            get { return email; }
+            get { return _email; }
             set
             {
-                if (email != value)
+                if (_email != value)
                 {
-                    email = value;
+                    _email = value;
                     OnPropertyChanged(nameof(Email));
                 }
             }
         }
         public string Login
         {
-            get { return login; }
+            get { return _login; }
             set
             {
-                if (login != value)
+                if (_login != value)
                 {
-                    login = value;
+                    _login = value;
                     OnPropertyChanged(nameof(Login));
                 }
             }
         }
         public string Password
         {
-            get { return password; }
+            get { return _password; }
             set
             {
-                if (password != value)
+                if (_password != value)
                 {
-                    password = value;
+                    _password = value;
                     OnPropertyChanged(nameof(Password));
                 }
             }
         }
         public DateTime DateOfBirth
         {
-            get { return dateofbirth; }
+            get { return _dateofbirth; }
             set
             {
-                if (dateofbirth != value)
+                if (_dateofbirth != value)
                 {
-                    dateofbirth = value;
+                    _dateofbirth = value;
                     OnPropertyChanged(nameof(DateOfBirth));
                 }
             }
         }
         private int Age
         {
-            get { return age; }
+            get { return _age; }
             set
             {
-                if (age != value)
+                if (_age != value)
                 {
-                    age = value;
+                    _age = value;
                     OnPropertyChanged(nameof(Age));
                 }
             }
         }
         public string Country
         {
-            get { return country; }
+            get { return _country; }
             set
             {
-                if (country != value)
+                if (_country != value)
                 {
-                    country = value;
+                    _country = value;
                     OnPropertyChanged(nameof(Country));
                 }
             }
         }
         
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {
