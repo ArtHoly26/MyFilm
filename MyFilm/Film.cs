@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -11,14 +12,15 @@ namespace MyFilm
     public class Film : INotifyPropertyChanged
     {
         private int _id;
-        private string _name;
-        private int _year;
-        private string _genre;
+        private string? _name;
+        private DateTime? _year;
+        private List<int> _genre;
         private string _description;
-        private string _country;
         private string _duration;
         private string _rating;
-        
+        private string _posterPath;
+
+        [JsonProperty("id")]
         public int Id
         {
             get { return _id; }
@@ -31,7 +33,9 @@ namespace MyFilm
                 }
             }
         }
-        public string Name
+
+        [JsonProperty("title")]
+        public string Title
         {
             get { return _name; }
             set
@@ -39,11 +43,13 @@ namespace MyFilm
                 if (_name != value)
                 {
                     _name = value;
-                    OnPropertyChanged(nameof(Name));
+                    OnPropertyChanged(nameof(Title));
                 }
             }
         }
-        public int Year
+
+        [JsonProperty("release_date")]
+        public DateTime? ReleaseDate
         {
             get { return _year; }
             set
@@ -51,11 +57,13 @@ namespace MyFilm
                 if (_year != value)
                 {
                     _year = value;
-                    OnPropertyChanged(nameof(Year));
+                    OnPropertyChanged(nameof(ReleaseDate));
                 }
             }
         }
-        public string Genre
+
+        [JsonProperty("genre_ids")]
+        public List<int> Genre
         {
             get { return _genre; }
             set
@@ -67,7 +75,23 @@ namespace MyFilm
                 }
             }
         }
-        public string Description
+
+        [JsonProperty("poster_path")]
+        public string PosterPath
+        {
+            get { return _posterPath; }
+            set
+            {
+                if (_posterPath != value)
+                {
+                    _posterPath = value;
+                    OnPropertyChanged(nameof(PosterPath));
+                }
+            }
+        }
+
+        [JsonProperty("overview")]
+        public string Overview
         {
             get { return _description; }
             set
@@ -75,23 +99,13 @@ namespace MyFilm
                 if (_description != value)
                 {
                     _description = value;
-                    OnPropertyChanged(nameof(Description));
+                    OnPropertyChanged(nameof(Overview));
                 }
             }
         }
-        public string Country
-        {
-            get { return _country; }
-            set
-            {
-                if (_country != value)
-                {
-                    _country = value;
-                    OnPropertyChanged(nameof(Country));
-                }
-            }
-        }
-        public string Duration
+
+        [JsonProperty("runtime")]
+        public string Runtime
         {
             get { return _duration; }
             set
@@ -99,11 +113,13 @@ namespace MyFilm
                 if (_duration != value)
                 {
                     _duration = value;
-                    OnPropertyChanged(nameof(Duration));
+                    OnPropertyChanged(nameof(Runtime));
                 }
             }
         }
-        public string Rating
+
+        [JsonProperty("vote_average")]
+        public string VoteAverage
         {
             get { return _rating; }
             set
@@ -111,11 +127,11 @@ namespace MyFilm
                 if (_rating != value)
                 {
                     _rating = value;
-                    OnPropertyChanged(nameof(Rating));
+                    OnPropertyChanged(nameof(VoteAverage));
                 }
             }
         }
-       
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {

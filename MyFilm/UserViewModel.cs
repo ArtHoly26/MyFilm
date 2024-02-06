@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static MyFilm.SearchResult;
 
 namespace MyFilm
 {
@@ -11,9 +13,10 @@ namespace MyFilm
     {
         private User _user;
         private Film _film;
-        private List<Film> _filmList;
         private List<string> countrylist;
-  
+        private SearchResult _results;
+        private List<Film> _filmList;
+
         public User User
         {
             get { return _user; }
@@ -50,6 +53,20 @@ namespace MyFilm
                 }
             }
         }
+
+        [JsonProperty("results")]
+        public SearchResult Result
+        {
+            get { return _results; }
+            set
+            {
+                if (_results != value)
+                {
+                    _results = value;
+                    OnPropertyChanged(nameof(Result));
+                }
+            }
+        }
         public List<Film> FilmList
         {
             get { return _filmList; }
@@ -62,7 +79,6 @@ namespace MyFilm
                 }
             }
         }
-
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)

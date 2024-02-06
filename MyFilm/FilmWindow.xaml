@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MyFilm"
         mc:Ignorable="d"
         Background="#f4aa0b"
-        Title="MainWindow" Height="800" Width="1200"  WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="800" Width="1600"  WindowState="Maximized">
 
     <Window.Resources>
         <local:UserViewModel x:Key="UserViewModel"/>
@@ -31,53 +31,68 @@
         </Grid.ColumnDefinitions>
 
         <TextBox Grid.Column="1" 
-                 x:Name="searchFilmBox"
+                 x:Name="searchTextBox"
                  Style="{StaticResource TextBoxStyle1}"
                  HorizontalAlignment="Center" 
-                 Margin="0,61,0,0" TextWrapping="Wrap" 
-                 VerticalAlignment="Top" Width="360"
-                 KeyDown="searchFilmBox_KeyDown"/>
+                 Margin="0,50,0,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Width="457"/>
 
         <TextBlock Grid.Column="1" 
                    Style="{StaticResource TextBlockStyle1}" 
-                   HorizontalAlignment="Center" 
-                   Margin="0,10,0,0" 
+                   HorizontalAlignment="Left" 
+                   Margin="28,10,0,0" 
                    TextWrapping="Wrap" 
                    Text="Введите название фильма" 
                    VerticalAlignment="Top" Width="360"/>
 
+        <TextBlock Grid.Column="1"
+                   x:Name="textErrorBlock"
+                   Style="{StaticResource TextBlockStyle1}" 
+                   HorizontalAlignment="Center" 
+                   Margin="0,196,0,0" 
+                   TextWrapping="Wrap"  
+                   VerticalAlignment="Top" Width="494" Height="186"/>
+
+        <TextBlock Grid.Column="3"
+                   x:Name="textInfoBlock"
+                   Style="{StaticResource TextBlockStyle1}" 
+                   HorizontalAlignment="Center" 
+                   TextWrapping="Wrap" 
+                   VerticalAlignment="Top" Width="494" Height="744" Grid.RowSpan="2" Margin="0,10,0,0"/>
+
         <Button Grid.Column="1"
                 Style="{StaticResource ButtonStyle1}"
                 Content="Поиск" 
-                Margin="10,160,0,0" 
-                Click="Button_Click_SearchFilm" 
+                Margin="356,57,0,0" 
+                Click="SearchButton_Click" 
+                HorizontalAlignment="Left" Width="113"/>
+
+        <Button Grid.Column="1"
+                Style="{StaticResource ButtonStyle1}"
+                Content="Подробная информация" 
+                Margin="18,125,0,0" 
                 HorizontalAlignment="Left"/>
 
-        <ListBox Grid.Column="2" 
-                  x:Name="filmListBox"
-                  DisplayMemberPath="Name" 
-                  ItemsSource="{Binding FilmList}" 
-                  SelectedItem="{Binding SelectedFilm}" 
-                  Margin="0,10,0,0"/>
+        <Button Grid.Column="1"
+                Style="{StaticResource ButtonStyle1}"
+                Content="Добавить в избранное" 
+                Margin="257,125,0,0" 
+                Click="SearchButton_Click" 
+                HorizontalAlignment="Left"/>
 
-        <TextBlock Grid.Column="3" 
-                   x:Name="textBlockName"
-                   Style="{StaticResource TextBlockStyle1}" 
-                   HorizontalAlignment="Center" 
-                   Margin="0,10,0,0"
-                   Text="{Binding SelectedFilm.Name}"
-                   TextWrapping="Wrap" 
-                   VerticalAlignment="Top" Width="360"/>
+        <ListBox Grid.Column="1" 
+                 x:Name="listBoxFilm" 
+                 ItemsSource="{Binding Result}"
+                 DisplayMemberPath="Title"
+                 Margin="10,10,10,10" Grid.Row="1"
+                 SelectionChanged="ListBoxFilm_SelectionChanged"/>
 
-        <TextBlock Grid.Column="3" 
-                   x:Name="textBlockYear"
-                   Style="{StaticResource TextBlockStyle1}" 
-                   HorizontalAlignment="Center" 
-                   Margin="0,61,0,0" 
-                   Text="{Binding SelectedFilm.Year}"
-                   TextWrapping="Wrap" 
-                   VerticalAlignment="Top" Width="360"/>
-
-
+        <Image Grid.Column="2" 
+               x:Name="posterImg"
+               Stretch="UniformToFill"
+               HorizontalAlignment="Left" 
+               Height="622" Margin="38,10,0,0" 
+               VerticalAlignment="Top" 
+               Width="384" Grid.RowSpan="2"/>
     </Grid>
 </Window>
