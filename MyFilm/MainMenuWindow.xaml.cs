@@ -16,15 +16,38 @@ namespace MyFilm
 {
     public partial class MainMenuWindow : Window
     {
-        public MainMenuWindow()
+
+        private UserViewModel userViewModel;
+        public MainMenuWindow(UserViewModel userViewModel)
         {
             InitializeComponent();
+            this.userViewModel = userViewModel;
+            DataContext = this.userViewModel;
         }
 
         private void Button_Click_Film(object sender, RoutedEventArgs e)
         {
             FilmWindow filmWindow = new FilmWindow();
             filmWindow.Show();
+            this.Close();
+        }
+
+        private void Button_Click_Office(object sender, RoutedEventArgs e)
+        {
+            PrivateOfficeWindow privateOfficeWindow = new PrivateOfficeWindow(userViewModel);
+            privateOfficeWindow.Show();
+            this.Close();
+        }
+
+        private void Button_Click_Exit(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
             this.Close();
         }
     }

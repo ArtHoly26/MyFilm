@@ -20,20 +20,23 @@ namespace MyFilm
     
     public partial class RegisterWindow : Window
     {
-        public List<string> Country { get; set; }
+        
         public RegisterWindow()
         {
             InitializeComponent();
             UserViewModel userViewModel = new UserViewModel();
-            userViewModel.countryList = new List<string>()
+            userViewModel.CountryList = new List<Country>()
             {
-                "Россия",
-                "Белоруссия",
-                "Канада"
+                 new Country { Name = "Россия"},
+                 new Country { Name = "США"},
+                 new Country { Name = "Италия"},
+                 new Country { Name = "Уругвай"}
             };
 
             DataContext = userViewModel;
         }
+
+        public string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
         private void Button_Exit_Menu(object sender, RoutedEventArgs e)
         {
@@ -53,9 +56,7 @@ namespace MyFilm
             string login = loginText.Text;
             string password = passwordText.Text;
             string passwordRepeat = passwordRepeatText.Text;
-
-            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-
+           
             try
             {
                     using (SqlConnection connection = new SqlConnection(connectionString))

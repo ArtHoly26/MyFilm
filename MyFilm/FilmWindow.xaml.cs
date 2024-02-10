@@ -1,16 +1,10 @@
 ﻿using System.Windows;
 using System.Net.Http;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Windows.Controls;
-using System.DirectoryServices;
-using System.Windows.Input;
-using System.Diagnostics.Metrics;
-using System.Windows.Media;
-using Newtonsoft.Json.Linq;
-using static MyFilm.SearchResult;
 using System.Windows.Media.Imaging;
-using System;
+using System.DirectoryServices;
+
 
 
 
@@ -37,11 +31,13 @@ namespace MyFilm
                 using (HttpClient client = new HttpClient())
                 {
                     string apiUrl = $"https://api.themoviedb.org/3/search/movie?api_key={apiKey}&query={searchQuery}&language=ru";
+                   
                     HttpResponseMessage response = await client.GetAsync(apiUrl);
 
                     if (response.IsSuccessStatusCode)
                     {
                         string jsonResult = await response.Content.ReadAsStringAsync();
+
                         // Десериализация JSON-ответа в SearchResult
                         SearchResult searchResult = JsonConvert.DeserializeObject<SearchResult>(jsonResult);
 
@@ -53,23 +49,18 @@ namespace MyFilm
                             {
                                 if (firstMovie.Title != null)
                                 {
-                                    textInfoBlock.Text = $"Название: {firstMovie.Title}\n";
+                                    textTitleBlock.Text = $"Название: {firstMovie.Title}\n";
                                 }
 
                                 if (firstMovie.ReleaseDate != null)
                                 {
-                                    string formattedDate = ((DateTime)firstMovie.ReleaseDate).ToString("yyyy-MM-dd");
-                                    textInfoBlock.Text += $"Год: {formattedDate}\n";
+                                    string formattedDate = ((DateTime)firstMovie.ReleaseDate).ToString("yyyy");
+                                    textReleaseBlock.Text += $"Дата выхода: {formattedDate}\n";
                                 }
 
                                 if (firstMovie.Overview != null)
                                 {
                                     textInfoBlock.Text += $"Описание: {firstMovie.Overview}\n";
-                                }
-
-                                if (firstMovie.Genre != null)
-                                {
-                                    textInfoBlock.Text += $"Жанр: {string.Join(", ", firstMovie.Genre)}";
                                 }
 
                                 if (searchResult != null && searchResult.Results != null && searchResult.Results.Any())
@@ -93,6 +84,11 @@ namespace MyFilm
                                     listBoxFilm.ItemsSource = searchResult.Results;
                                 }
 
+                                if (firstMovie.VoteAverage != null && firstMovie.VoteCount != null)
+                                {
+                                    textRatingBlock.Text += $"Среднняя оценка: {firstMovie.VoteAverage} Всего голосов: {firstMovie.VoteCount}";
+                                }
+
                                 else
                                 {
                                     textErrorBlock.Text = "Данные о фильме не содержат информации.";
@@ -110,6 +106,8 @@ namespace MyFilm
             {
                 textErrorBlock.Text = $"Произошла ошибка: {ex.Message}";
             }
+
+
         }
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
@@ -118,33 +116,30 @@ namespace MyFilm
         private void ListBoxFilm_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             textInfoBlock.Text = "";
-           
+            textRatingBlock.Text = "";
+            textTitleBlock.Text = "";
+            textReleaseBlock.Text = "";
+            
             if (listBoxFilm.SelectedItem != null)
             {
                 // Получите выбранный фильм из списка
                 Film selectedFilm = (Film)listBoxFilm.SelectedItem;
-
                 if (selectedFilm != null)
                 {
                     if (selectedFilm.Title != null)
                     {
-                        textInfoBlock.Text = $"Название: {selectedFilm.Title}\n";
+                        textTitleBlock.Text = $"Название: {selectedFilm.Title}\n";
                     }
 
                     if (selectedFilm.ReleaseDate != null)
                     {
-                        string formattedDate = ((DateTime)selectedFilm.ReleaseDate).ToString("yyyy-MM-dd");
-                        textInfoBlock.Text += $"Год: {formattedDate}\n";
+                        string formattedDate = ((DateTime)selectedFilm.ReleaseDate).ToString("yyyy");
+                        textReleaseBlock.Text += $"Год: {formattedDate}\n";
                     }
 
                     if (selectedFilm.Overview != null)
                     {
                         textInfoBlock.Text += $"Описание: {selectedFilm.Overview}\n";
-                    }
-
-                    if (selectedFilm.Genre != null)
-                    {
-                        textInfoBlock.Text += $"Жанр: {string.Join(", ", selectedFilm.Genre)}";
                     }
 
                     if (!string.IsNullOrEmpty(selectedFilm.PosterPath))
@@ -156,16 +151,23 @@ namespace MyFilm
                             posterImg.Source = bitmapImage;
                     }
 
+                    if (selectedFilm.VoteCount != null && selectedFilm.VoteAverage != null)
+                    {
+                        textRatingBlock.Text += $"Среднняя оценка: {selectedFilm.VoteAverage} Всего голосов: {selectedFilm.VoteCount}";
+                    }
+
                     else
                     {
                             // Если PosterPath не является корректным URL, выполните соответствующие действия.
                             Console.WriteLine("Некорректный URL постера.");
                     }
-                }
+                }      
             }
         }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
 
-
+        }
     }
 }
 

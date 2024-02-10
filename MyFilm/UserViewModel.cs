@@ -1,20 +1,15 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static MyFilm.SearchResult;
 
 namespace MyFilm
 {
-    class UserViewModel : INotifyPropertyChanged
+    public class UserViewModel : INotifyPropertyChanged
     {
         private User _user;
         private Film _film;
-        private List<string> countrylist;
+        private List<Country> _countrylist;
         private SearchResult _results;
+        private DetailFilm _detailFilm;
         private List<Film> _filmList;
 
         public User User
@@ -41,15 +36,15 @@ namespace MyFilm
                 }
             }
         }
-        public List<string> countryList
+        public List<Country> CountryList
         {
-            get { return countrylist; }
+            get { return _countrylist; }
             set
             {
-                if (countrylist != value)
+                if (_countrylist != value)
                 {
-                    countrylist = value;
-                    OnPropertyChanged(nameof(countrylist));
+                    _countrylist = value;
+                    OnPropertyChanged(nameof(CountryList));
                 }
             }
         }
@@ -64,6 +59,18 @@ namespace MyFilm
                 {
                     _results = value;
                     OnPropertyChanged(nameof(Result));
+                }
+            }
+        }
+        public DetailFilm DetailFilm
+        {
+            get { return _detailFilm; }
+            set
+            {
+                if (_detailFilm != value)
+                {
+                    _detailFilm = value;
+                    OnPropertyChanged(nameof(DetailFilm));
                 }
             }
         }

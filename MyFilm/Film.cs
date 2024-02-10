@@ -1,48 +1,41 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyFilm
 {
     public class Film : INotifyPropertyChanged
     {
-        private int _id;
-        private string? _name;
-        private DateTime? _year;
-        private List<int> _genre;
-        private string _description;
-        private string _duration;
-        private string _rating;
-        private string _posterPath;
-
+        private int _idFilm;
+        private string? _title;
+        private DateTime? _releaseDate;
+        private string? _owerview;
+        private string? _posterPath;
+        private double _voteAverage;
+        private double _voteCount;
+        
         [JsonProperty("id")]
-        public int Id
+        public int IdFilm
         {
-            get { return _id; }
+            get { return _idFilm; }
             set
             {
-                if (_id != value)
+                if (_idFilm != value)
                 {
-                    _id = value;
-                    OnPropertyChanged(nameof(Id));
+                    _idFilm = value;
+                    OnPropertyChanged(nameof(IdFilm));
                 }
             }
         }
 
         [JsonProperty("title")]
-        public string Title
+        public string? Title
         {
-            get { return _name; }
+            get { return _title; }
             set
             {
-                if (_name != value)
+                if (_title != value)
                 {
-                    _name = value;
+                    _title = value;
                     OnPropertyChanged(nameof(Title));
                 }
             }
@@ -51,27 +44,27 @@ namespace MyFilm
         [JsonProperty("release_date")]
         public DateTime? ReleaseDate
         {
-            get { return _year; }
+            get { return _releaseDate; }
             set
             {
-                if (_year != value)
+                if (_releaseDate != value)
                 {
-                    _year = value;
+                    _releaseDate = value;
                     OnPropertyChanged(nameof(ReleaseDate));
                 }
             }
         }
 
-        [JsonProperty("genre_ids")]
-        public List<int> Genre
+        [JsonProperty("overview")]
+        public string Overview
         {
-            get { return _genre; }
+            get { return _owerview; }
             set
             {
-                if (_genre != value)
+                if (_owerview != value)
                 {
-                    _genre = value;
-                    OnPropertyChanged(nameof(Genre));
+                    _owerview = value;
+                    OnPropertyChanged(nameof(Overview));
                 }
             }
         }
@@ -90,44 +83,30 @@ namespace MyFilm
             }
         }
 
-        [JsonProperty("overview")]
-        public string Overview
-        {
-            get { return _description; }
-            set
-            {
-                if (_description != value)
-                {
-                    _description = value;
-                    OnPropertyChanged(nameof(Overview));
-                }
-            }
-        }
-
-        [JsonProperty("runtime")]
-        public string Runtime
-        {
-            get { return _duration; }
-            set
-            {
-                if (_duration != value)
-                {
-                    _duration = value;
-                    OnPropertyChanged(nameof(Runtime));
-                }
-            }
-        }
-
         [JsonProperty("vote_average")]
-        public string VoteAverage
+        public double VoteAverage
         {
-            get { return _rating; }
+            get { return _voteAverage; }
             set
             {
-                if (_rating != value)
+                if (_voteAverage != value)
                 {
-                    _rating = value;
+                    _voteAverage = value;
                     OnPropertyChanged(nameof(VoteAverage));
+                }
+            }
+        }
+
+        [JsonProperty("vote_count")]
+        public double VoteCount
+        {
+            get { return _voteCount; }
+            set
+            {
+                if (_voteCount != value)
+                {
+                    _voteCount = value;
+                    OnPropertyChanged(nameof(VoteCount));
                 }
             }
         }

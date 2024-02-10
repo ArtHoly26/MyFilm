@@ -23,18 +23,28 @@
 
         <Button Grid.Column="2"
                 Style="{StaticResource ButtonStyle1}"
-                Content="Поиск фильмов" 
-                Margin="0,53,0,0" Click="Button_Click_Film"/>
+                Content="Личный кабинет" 
+                Margin="0,10,0,0" Click="Button_Click_Office"/>
 
         <Button Grid.Column="2"
                 Style="{StaticResource ButtonStyle1}"
-                Content="Поиск сериалов" 
-                Margin="0,140,0,0"/>
+                Content="Поиск медии" 
+                Margin="0,71,0,0" Click="Button_Click_Film"/>
 
         <Button Grid.Column="2"
                 Style="{StaticResource ButtonStyle1}"
                 Content="Избранное" 
-                Margin="0,229,0,0"/>
+                Margin="0,132,0,0"/>
+
+        <Button Grid.Column="2"
+                Style="{StaticResource ButtonStyle1}"
+                Content="Выйти" 
+                Margin="0,254,0,0" Click="Button_Click_Exit"/>
+
+        <Button Grid.Column="2"
+                Style="{StaticResource ButtonStyle1}"
+                Content="Сменить учетную запись" 
+                Margin="0,193,0,0" Click="Button_Click"/>
 
     </Grid>
 </Window>

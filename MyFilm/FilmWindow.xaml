@@ -49,16 +49,40 @@
                    x:Name="textErrorBlock"
                    Style="{StaticResource TextBlockStyle1}" 
                    HorizontalAlignment="Center" 
-                   Margin="0,196,0,0" 
+                   Margin="0,275,0,0" 
                    TextWrapping="Wrap"  
-                   VerticalAlignment="Top" Width="494" Height="186"/>
+                   VerticalAlignment="Top" Width="457" Height="107" Grid.Row="1"/>
+
+        <TextBlock Grid.Column="1"
+                   x:Name="textTitleBlock"
+                   Style="{StaticResource TextBlockStyle1}" 
+                   HorizontalAlignment="Left" 
+                   Margin="513,5,0,0" 
+                   TextWrapping="Wrap"  
+                   VerticalAlignment="Top" Width="493" Height="35" Grid.ColumnSpan="2"/>
+
+        <TextBlock Grid.Column="1"
+                   x:Name="textReleaseBlock"
+                   Style="{StaticResource TextBlockStyle1}" 
+                   HorizontalAlignment="Left" 
+                   Margin="513,289,0,0" 
+                   TextWrapping="Wrap"  
+                   VerticalAlignment="Top" Width="493" Height="35" Grid.Row="1" Grid.ColumnSpan="2"/>
+
+        <TextBlock Grid.Column="1"
+                   x:Name="textRatingBlock"
+                   Style="{StaticResource TextBlockStyle1}" 
+                   HorizontalAlignment="Left" 
+                   Margin="513,324,0,0" 
+                   TextWrapping="Wrap"  
+                   VerticalAlignment="Top" Width="493" Height="35" Grid.Row="1" Grid.ColumnSpan="2"/>
 
         <TextBlock Grid.Column="3"
                    x:Name="textInfoBlock"
                    Style="{StaticResource TextBlockStyle1}" 
                    HorizontalAlignment="Center" 
                    TextWrapping="Wrap" 
-                   VerticalAlignment="Top" Width="494" Height="744" Grid.RowSpan="2" Margin="0,10,0,0"/>
+                   VerticalAlignment="Top" Width="494" Height="749" Margin="0,2,0,0" Grid.RowSpan="2"/>
 
         <Button Grid.Column="1"
                 Style="{StaticResource ButtonStyle1}"
@@ -71,7 +95,7 @@
                 Style="{StaticResource ButtonStyle1}"
                 Content="Подробная информация" 
                 Margin="18,125,0,0" 
-                HorizontalAlignment="Left"/>
+                HorizontalAlignment="Left" Click="Button_Click"/>
 
         <Button Grid.Column="1"
                 Style="{StaticResource ButtonStyle1}"
@@ -84,15 +108,16 @@
                  x:Name="listBoxFilm" 
                  ItemsSource="{Binding Result}"
                  DisplayMemberPath="Title"
-                 Margin="10,10,10,10" Grid.Row="1"
-                 SelectionChanged="ListBoxFilm_SelectionChanged"/>
+                 Margin="18,309,28,122"
+                 SelectionChanged="ListBoxFilm_SelectionChanged" Grid.RowSpan="2"/>
 
         <Image Grid.Column="2" 
                x:Name="posterImg"
                Stretch="UniformToFill"
                HorizontalAlignment="Left" 
-               Height="622" Margin="38,10,0,0" 
-               VerticalAlignment="Top" 
-               Width="384" Grid.RowSpan="2"/>
+               Height="622" Margin="11,50,0,0" 
+               VerticalAlignment="Top"
+               Width="460" Grid.RowSpan="2"/>
+
     </Grid>
 </Window>

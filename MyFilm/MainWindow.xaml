@@ -45,6 +45,7 @@
                 Click="Button_Click_URL"/>
 
         <TextBox Grid.Column="1" 
+                 Name="textLoginToCheck"
                  Style="{StaticResource TextBoxStyle1}"
                  HorizontalAlignment="Center" 
                  Margin="0,58,0,0" TextWrapping="Wrap" 
@@ -68,6 +69,7 @@
                    VerticalAlignment="Top" Grid.ColumnSpan="2" Width="220"/>
 
         <TextBox Grid.Column="1"
+                 Name="textPasswordToCheck"
                  Style="{StaticResource TextBoxStyle1}"
                  HorizontalAlignment="Center" 
                  Margin="0,197,0,0" 
