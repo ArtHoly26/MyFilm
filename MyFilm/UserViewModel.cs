@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace MyFilm
@@ -11,6 +12,7 @@ namespace MyFilm
         private SearchResult _results;
         private DetailFilm _detailFilm;
         private List<Film> _filmList;
+        private ObservableCollection<Film> _myFilm;
 
         public User User
         {
@@ -83,6 +85,19 @@ namespace MyFilm
                 {
                     _filmList = value;
                     OnPropertyChanged(nameof(FilmList));
+                }
+            }
+        }
+
+        public ObservableCollection<Film> MyFilm
+        {
+            get { return _myFilm; }
+            set
+            {
+                if (_myFilm != value)
+                {
+                    _myFilm = value;
+                    OnPropertyChanged(nameof(MyFilm));
                 }
             }
         }

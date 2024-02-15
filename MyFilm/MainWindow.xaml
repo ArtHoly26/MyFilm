@@ -68,12 +68,12 @@
                    Text="Введите пароль" 
                    VerticalAlignment="Top" Grid.ColumnSpan="2" Width="220"/>
 
-        <TextBox Grid.Column="1"
+        <PasswordBox Grid.Column="1"
                  Name="textPasswordToCheck"
-                 Style="{StaticResource TextBoxStyle1}"
+                 Style="{StaticResource TextPasswordBox}"
+                 PasswordChar="*"
                  HorizontalAlignment="Center" 
                  Margin="0,197,0,0" 
-                 TextWrapping="Wrap" 
                  VerticalAlignment="Top"  
                  Grid.ColumnSpan="2"/>
 

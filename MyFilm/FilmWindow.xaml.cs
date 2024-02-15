@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.DirectoryServices;
+using System.Data.SqlClient;
+using System.Configuration;
 
 
 
@@ -12,10 +14,14 @@ namespace MyFilm
 {
     public partial class FilmWindow : Window
     {
-        public FilmWindow()
+
+        private UserViewModel userViewModel;
+        private string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        public FilmWindow(UserViewModel userViewModel)
         {
             InitializeComponent();
             Loaded += OnLoaded;
+            this.userViewModel = userViewModel;
         }
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
@@ -111,7 +117,7 @@ namespace MyFilm
         }
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            _ = LoadDataAsync(); // Запускаем выполнение асинхронной работы
+            _ = LoadDataAsync();
         }
         private void ListBoxFilm_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -164,9 +170,48 @@ namespace MyFilm
                 }      
             }
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_Exit(object sender, RoutedEventArgs e)
         {
+            MainMenuWindow mainMenuWindow =new MainMenuWindow(userViewModel);
+            mainMenuWindow.Show();
+            this.Close();
+        }
+        private void Button_Click_Add(object sender, RoutedEventArgs e)
+        {
+            if (listBoxFilm.SelectedItem != null)
+            {
+                Film selectedFilm = (Film)listBoxFilm.SelectedItem;
+               
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
 
+                    string query = "INSERT INTO AddFilm (UserID, Title, ReleaseDate, Overview, PosterPath, VoteAverage, VoteCount) VALUES (@UserID, @Title, @ReleaseDate, @Overview, @PosterPath, @VoteAverage, @VoteCount)";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UserID", userViewModel.User.Id);
+                        command.Parameters.AddWithValue("@Title", selectedFilm.Title);
+                        command.Parameters.AddWithValue("@ReleaseDate", selectedFilm.ReleaseDate);
+                        command.Parameters.AddWithValue("@Overview", selectedFilm.Overview);
+                        command.Parameters.AddWithValue("@PosterPath", selectedFilm.PosterPath);
+                        command.Parameters.AddWithValue("@VoteAverage", selectedFilm.VoteAverage);
+                        command.Parameters.AddWithValue("@VoteCount", selectedFilm.VoteCount);
+
+                        try
+                        {
+                            command.ExecuteNonQuery();
+                            MessageBox.Show("Фильм добавлен в избранное!");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Произошла ошибка при добавлении фильма в избранное: {ex.Message}");
+                        }
+                    }
+                }
+
+     
+            }
         }
     }
 }

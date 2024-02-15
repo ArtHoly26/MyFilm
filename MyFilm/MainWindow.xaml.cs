@@ -35,7 +35,7 @@ namespace MyFilm
         {
             UserViewModel userViewModel = new UserViewModel();
             string loginToCheck = textLoginToCheck.Text;
-            string passwordToCheck = textPasswordToCheck.Text;
+            string passwordToCheck = textPasswordToCheck.Password;
 
             try
             {

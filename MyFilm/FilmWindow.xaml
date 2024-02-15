@@ -95,13 +95,20 @@
                 Style="{StaticResource ButtonStyle1}"
                 Content="Подробная информация" 
                 Margin="18,125,0,0" 
-                HorizontalAlignment="Left" Click="Button_Click"/>
+                HorizontalAlignment="Left"/>
 
         <Button Grid.Column="1"
                 Style="{StaticResource ButtonStyle1}"
                 Content="Добавить в избранное" 
                 Margin="257,125,0,0" 
-                Click="SearchButton_Click" 
+                Click="Button_Click_Add" 
+                HorizontalAlignment="Left"/>
+
+        <Button Grid.Column="1"
+                Style="{StaticResource ButtonStyle1}"
+                Content="Выйти в меню" 
+                Margin="142,196,0,0" 
+                Click="Button_Click_Exit" 
                 HorizontalAlignment="Left"/>
 
         <ListBox Grid.Column="1" 

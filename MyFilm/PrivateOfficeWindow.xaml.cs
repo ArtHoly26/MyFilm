@@ -30,6 +30,15 @@ namespace MyFilm
             InitializeComponent();
             this.userViewModel = userViewModel;
             DataContext = this.userViewModel;
+            userViewModel.CountryList = new List<Country>()
+            {
+                 new Country { Name = "Россия"},
+                 new Country { Name = "США"},
+                 new Country { Name = "Италия"},
+                 new Country { Name = "Уругвай"}
+            };
+
+            DataContext=userViewModel;
         }
 
         private void Button_Click_Exit(object sender, RoutedEventArgs e)

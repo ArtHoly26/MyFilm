@@ -142,7 +142,8 @@
 
         <ComboBox Grid.Column="2" 
                   x:Name="countryComboBox"
-                  ItemsSource="{Binding countryList}"
+                  ItemsSource="{Binding CountryList}"
+                  DisplayMemberPath="Name"
                   HorizontalAlignment="Center" 
                   Margin="0,145,0,0" 
                   VerticalAlignment="Top" 

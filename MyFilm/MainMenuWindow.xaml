@@ -28,13 +28,13 @@
 
         <Button Grid.Column="2"
                 Style="{StaticResource ButtonStyle1}"
-                Content="Поиск медии" 
+                Content="Поиск фильмов" 
                 Margin="0,71,0,0" Click="Button_Click_Film"/>
 
         <Button Grid.Column="2"
                 Style="{StaticResource ButtonStyle1}"
                 Content="Избранное" 
-                Margin="0,132,0,0"/>
+                Margin="0,132,0,0" Click="Button_Click_Collection"/>
 
         <Button Grid.Column="2"
                 Style="{StaticResource ButtonStyle1}"
@@ -44,7 +44,7 @@
         <Button Grid.Column="2"
                 Style="{StaticResource ButtonStyle1}"
                 Content="Сменить учетную запись" 
-                Margin="0,193,0,0" Click="Button_Click"/>
+                Margin="0,193,0,0" Click="Button_Click_Back"/>
 
     </Grid>
 </Window>

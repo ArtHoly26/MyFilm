@@ -27,7 +27,7 @@ namespace MyFilm
 
         private void Button_Click_Film(object sender, RoutedEventArgs e)
         {
-            FilmWindow filmWindow = new FilmWindow();
+            FilmWindow filmWindow = new FilmWindow(userViewModel);
             filmWindow.Show();
             this.Close();
         }
@@ -44,10 +44,17 @@ namespace MyFilm
             this.Close();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_Back(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
+            this.Close();
+        }
+
+        private void Button_Click_Collection(object sender, RoutedEventArgs e)
+        {
+            CollectionWindow collectionWindow = new CollectionWindow(userViewModel);
+            collectionWindow.Show();
             this.Close();
         }
     }
