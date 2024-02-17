@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MyFilm"
         mc:Ignorable="d"
          Background="#f4aa0b"
-        Title="RegisterWindow"  Height="800" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Окно регистрации"  Height="800" Width="800" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <local:UserViewModel x:Key="UserViewModel"/>

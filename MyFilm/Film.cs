@@ -12,7 +12,6 @@ namespace MyFilm
         private string? _posterPath;
         private double _voteAverage;
         private double _voteCount;
-        private int _idUser;
 
         
         [JsonProperty("id")]
@@ -113,7 +112,6 @@ namespace MyFilm
             }
         }
        
-
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)

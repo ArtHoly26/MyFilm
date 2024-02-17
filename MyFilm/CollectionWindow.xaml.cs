@@ -1,25 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace MyFilm
 {
-    /// <summary>
-    /// Interaction logic for CollectionWindow.xaml
-    /// </summary>
     public partial class CollectionWindow : Window
     {
         private UserViewModel userViewModel;
@@ -30,7 +19,6 @@ namespace MyFilm
             this.userViewModel = userViewModel;
             DataContext = this.userViewModel;
         }
-
         private void Button_Click_ShowCollection(object sender, RoutedEventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -62,7 +50,6 @@ namespace MyFilm
                 }
             }
         }
-
         private void ListBoxFilm_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (listBoxFilm.SelectedItem != null)
@@ -105,12 +92,84 @@ namespace MyFilm
                 }
             }
         }
-
         private void Button_Click_Exit(object sender, RoutedEventArgs e)
         {
             MainMenuWindow mainMenuWindow = new MainMenuWindow(userViewModel);
             mainMenuWindow.Show();
             this.Close();
+        }
+        private void Button_Click_CleanAll(object sender, RoutedEventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = "DELETE FROM AddFilm WHERE UserID = @UserID;";
+
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@UserID", userViewModel.User.Id);
+
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        userViewModel.MyFilm.Clear();
+                        string errorMessage = "Данные удалены!";
+                        textError.Text = errorMessage;
+                        textError.Foreground = Brushes.Green;
+                        textInfoBlock.Text = "";
+                        textRatingBlock.Text = "";
+                        textReleaseBlock.Text = "";
+                        posterImg.Source = null;
+                    }
+                    catch (Exception ex)
+                    {
+                        string errorMessage = $"Ошибка удаления данных {ex.Message}";
+                        textError.Text = errorMessage;
+                        textError.Foreground = Brushes.Red;
+                    }
+                }
+            }
+        }
+        private void Button_Click_Delete(object sender, RoutedEventArgs e)
+        {
+            if (listBoxFilm.SelectedItem != null)
+            {
+                Film selectedFilm = (Film)listBoxFilm.SelectedItem;
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = "DELETE FROM AddFilm WHERE UserID = @UserID AND Title=@Title";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UserID", userViewModel.User.Id);
+                        command.Parameters.AddWithValue("@Title", selectedFilm.Title);
+
+                        try
+                        {
+                            command.ExecuteNonQuery();
+                            userViewModel.MyFilm.Remove(selectedFilm);
+                            string errorMessage =  "Фильм удален из избранного!";
+                            textError.Text = errorMessage;
+                            textError.Foreground = Brushes.Green;
+                            textInfoBlock.Text = "";
+                            textRatingBlock.Text = "";
+                            textReleaseBlock.Text = "";
+                            posterImg.Source = null;
+
+                        }
+                        catch (Exception ex)
+                        {
+                            string errorMessage = $"Ошибка удаления данных {ex.Message}";
+                            textError.Text = errorMessage;
+                            textError.Foreground = Brushes.Red;
+                        }
+                    }
+                }
+            }
         }
     }
 }
